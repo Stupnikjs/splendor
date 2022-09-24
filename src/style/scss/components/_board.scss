@@ -1,0 +1,113 @@
+
+.board{
+    display: grid;
+    grid-template-columns: 1fr 60% 1fr;
+    grid-template-rows: 80% 20%;
+    
+}
+
+.cardBoard{
+    display: grid;
+    
+    gap: 5%;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr 1fr ; 
+    height: 60vh;
+    grid-column: 1;
+    margin: 2%;
+    grid-row: 1;
+    grid-column: 2;
+}
+
+
+.player{ 
+    background-color: antiquewhite;
+    font-size: 0.7em;
+    height: 100%;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+
+}
+
+.playerCards{
+    
+    height: 50vh;
+    
+    .ul{
+        margin: 0 10%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        
+        li{
+            list-style-type: none;
+            margin-top: 50%;
+            height: 6vh;
+            border-radius: 1Vh;
+            width: 5vh;
+             
+        }
+        span{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+
+
+
+.bank{
+    grid-row: 2;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(76, 57, 243);
+    border-radius: 15px;
+    margin-top: 10%;
+    .token{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: white;
+
+        .colorPoint{
+            margin-left: 10%;
+            height: 20px;
+            width: 20px;
+            border-radius: 10px;
+           border: solid 0.5px 
+        }
+    }
+}
+
+.turnDisplay{
+    
+    border-radius: 15px;
+    
+    margin: -2% auto;
+    font-size: large;
+    grid-row: 1;
+    grid-column-start: 1;
+    grid-column-end: 5;
+}
+
+
+.playerTokens{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    .playerToken{
+        padding: 5px;
+        border-radius: 5px;
+        color: rgb(219, 213, 194);
+        font-weight: bold;
+    }
+}
