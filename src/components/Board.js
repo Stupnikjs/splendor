@@ -1,5 +1,5 @@
-import React, { startTransition, useEffect, useReducer } from 'react';
-import { getRandomVal,returnCount, returnColor, generateCard, generateCardsArray } from '../function/functions';
+import React, { useReducer } from 'react';
+import {  generateCard, generateCardsArray } from '../function/functions';
 import CardBoard from './CardBoard';
 import GameDisplay from './GameDisplay';
 import Bank from './Bank';
@@ -15,24 +15,40 @@ for (var i = 0; i < n ; i++){
 }
  return players
 }
+const pushCard = function(element, index, card){
+        switch(index){
+            case 0: return element; 
+            case 1: return [...element, card]
+            case 2: return element; 
+            case 3: return element; 
+            default: return element
+        }
+}
+const pushToken = function(element, index, token){
+        switch(index){
+            case 0: return element; 
+            case 1: return element; 
+            case 2: return [...element, token]; 
+            case 3: return element; 
+            default: return element
+        }
+}
 
 const reducer = (state, action) => {
     switch (action.type){
-        case "card" : return [state[0].map((element,index) => {
-            switch(index){
-                case 0: return element; 
-                case 1: return [...element, action.card]
-                case 2: return element; 
-                case 3: return element; 
-                default: return element
-            }
-            
-        }), state[1]]
+        case "card" : return [state[0].map(
+          (element, index) => pushCard(element, index, action.card) 
+        ), state[1]]
+        case "token" : return [state[0].map(
+            (element, index) => pushToken(element, index, action.token) 
+          ), state[1]]
         
         default: return new Error()
     }
     }
-
+const checkInput = function(e){
+    console.log(e.currentTarget.id)
+}
 
 const Board = () => {
 
@@ -50,12 +66,11 @@ const Board = () => {
         catch(err){console.log(err)}
        }
     
-    console.log(players)
     return (
         <div className='board'>
             <GameDisplay></GameDisplay>
             <CardBoard cards={cards}  getCard={getCard}></CardBoard>
-            <Bank bank={bank}></Bank>
+            <Bank bank={bank} checkInput={checkInput}></Bank>
             {players.map((element, index) => {
                 return <Player key={index} player={element}></Player>
             })}       
