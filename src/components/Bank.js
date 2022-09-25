@@ -13,15 +13,19 @@ const Bank = (props) => {
             else return element
         }))
     }
-    console.log(bankState)
+
 
 
     useEffect(() => {
-            if(bankState.filter((element) => element === true).length === 3) console.log("coucou meli")
+            if(bankState.filter((element) => element === true).length === 3){ props.setBank(bankState.map((element,index)=> {
+                if (element) return props.bank[index] - 1
+                else return props.bank[index]
+                
+            }))
+            setBankState([false, false, false, false, false])}
 
 
-
-    },[bankState])
+    },[bankState, props])
     return (
         <div className='bank'>
             {props.bank.map((element, index) => {

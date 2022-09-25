@@ -18,42 +18,27 @@
 
 
 .player{ 
-    background-color: antiquewhite;
-    font-size: 0.7em;
+    background-color: antiquewhite; 
     height: 100%;
     width: 80%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 15px;
     grid-row: 2;
-
+    margin: auto;
+    h2{
+        text-align: center;
+    }
 }
 
 .playerCards{
+    height: 50%;
+    background-color: rgb(242, 166, 67);
     
-    height: 50vh;
+   
+
+}
+.playerTokens{
     
-    .ul{
-        margin: 0 10%;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        
-        li{
-            list-style-type: none;
-            margin-top: 50%;
-            height: 6vh;
-            border-radius: 1Vh;
-            width: 5vh;
-             
-        }
-        span{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
+    background-color: blueviolet;
+    height: 30%;
 }
 
 
@@ -96,18 +81,6 @@
     grid-column-end: 5;
 }
 
-
-.playerTokens{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    .playerToken{
-        padding: 5px;
-        border-radius: 5px;
-        color: rgb(219, 213, 194);
-        font-weight: bold;
-    }
-}
 
 .gameDisplay{
     grid-column-start: 1;

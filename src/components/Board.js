@@ -65,12 +65,12 @@ const Board = () => {
         try{ dispatch({type : "card", card : playerCard}); console.log(players)}
         catch(err){console.log(err)}
        }
-    
+    console.log(bank)
     return (
         <div className='board'>
             <GameDisplay></GameDisplay>
             <CardBoard cards={cards}  getCard={getCard}></CardBoard>
-            <Bank bank={bank} checkInput={checkInput}></Bank>
+            <Bank bank={bank} setBank={setBank} checkInput={checkInput}></Bank>
             {players.map((element, index) => {
                 return <Player key={index} player={element}></Player>
             })}       
