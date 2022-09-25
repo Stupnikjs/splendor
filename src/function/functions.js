@@ -21,12 +21,12 @@ const getRandomVal = (n, bool) => {
  }
  
        // generate card object 
- 
+       // index 0: index index 1: couleur index 2: cost, index 3: point
  function generateCard(index){
    var couleur =colors[getRandomVal(5)];
    if (couleur === undefined){ couleur = colors[getRandomVal(4)] }   
    return {
-     index : index , 
+     index: index , 
      color: couleur , 
      cost : generateCostByRank(index), 
      point: getRandomVal(2, false)

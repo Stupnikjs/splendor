@@ -9,7 +9,7 @@ const CardBoard = (props) => {
         <div className='cardBoard'>
 
             {props.cards.map( (elmt, index) => {
-              return <Card key={index} id={index +1} getCard={props.getCard} cards={props.cards} card={elmt}></Card>
+              return <Card key={index} id={index +1} getCard={props.getCard} card={elmt}></Card>
                     })}
              
         </div>

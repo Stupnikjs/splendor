@@ -1,12 +1,12 @@
 .card{
     background-color: $cardColor;
-    padding: 5px;
+    
     display: grid;
     grid-template-rows: 20% 80%;
     text-align: center;
     border-radius: 15px; 
-    margin: 1%;
-    // transform: rotateZ(5deg);
+    
+    
     .color, .point{
         grid-row: 1;
     }
