@@ -11,6 +11,7 @@
     .playerCards{
         background-color: aliceblue;
         height: 100%; 
+        
 
         h4{
             font-size: 0.7em;
@@ -20,8 +21,9 @@
 
         .list{
             height: fit-content;
-            playerCard{
-                border: 00.5px solid black;
+            .playerCard{
+                border: 0.5px solid black;
+                border-radius: 2px;
 
             }
         }
