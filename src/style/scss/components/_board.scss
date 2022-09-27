@@ -23,30 +23,7 @@
 
 
 
-.bank{
-    grid-row: 3;
-    grid-column-start: 1;
-    grid-column-end: 5;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    background-color: rgb(76, 57, 243);
-    border-radius: 15px;
-   
-    .token{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
 
-        .colorPoint{
-            margin-left: 10%;
-            height: 20px;
-            width: 20px;
-            border-radius: 10px;
-           border: solid 0.5px 
-        }
-    }
-}
 
 
 
