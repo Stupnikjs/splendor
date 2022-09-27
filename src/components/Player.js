@@ -8,6 +8,9 @@ const Player = (props) => {
     return (
         <div className='player'>
             <h2> Player {props.player[0]}</h2>
+            <h3>Score {props.player[1].reduce((previous, current) => {
+                return previous + current
+            })}</h3>
            <div className='playerCards'>
             <div className='ul'> 
                 <li className='blue'>{props.player[1].filter(element => element.color === "blue" ).length}</li>

@@ -1,10 +1,12 @@
 import React from 'react';
 
+// {props.players.filter(element => element[3])[0]}
 
 const GameDisplay = (props) => {
     return (
         <div className='gameDisplay'>
-          Game {JSON.stringify(props)}
+           <p>Player turn </p>
+          <button> Start Game </button> 
         </div>
     );
 };

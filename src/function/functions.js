@@ -22,6 +22,7 @@ const getRandomVal = (n, bool) => {
  
        // generate card object 
        // index 0: index index 1: couleur index 2: cost, index 3: point
+       
  function generateCard(index){
    var couleur =colors[getRandomVal(5, true)];
    if (couleur === undefined){ couleur = colors[getRandomVal(4)] }   
