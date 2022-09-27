@@ -1,26 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-/*  Player {props.player[0]}
+/*  
             */
 
 const Player = (props) => {
     
+    const [score, setScore] = useState(0)
+    useEffect( () => {
+      setScore(props.player[1].reduce((previous, current) => 
+        previous + current.point, 0)); 
+      
+       
+    }, [score, props])
     return (
-        <div className='player'>
-            <h2> Player {props.player[0]}</h2>
-            <h3>Score {props.player[1].reduce((previous, current) => {
-                return previous + current
-            })}</h3>
-           <div className='playerCards'>
-            <div className='ul'> 
-                <li className='blue'>{props.player[1].filter(element => element.color === "blue" ).length}</li>
-                <li className='red'>{props.player[1].filter(element => element.color === "red" ).length}</li>
-                <li className='green'>{props.player[1].filter(element => element.color === "green" ).length}</li>
-                <li className='black'>{props.player[1].filter(element => element.color === "black" ).length}</li>
-                <li className='white'>{props.player[1].filter(element => element.color === "white" ).length}</li>
+        <div className={'player' + ' ' + 'player' + props.id}>
+            <div className='header'>
+                <h2> Player {props.player[0]}</h2>
+                <h3>Score  
+                { score }
+                </h3>               
+            </div>
+        <div className='playerCards'>
+           <h4>Cards</h4>
+            <div className='list'> 
+                <p><li className='blue'></li><span>{props.player[1].filter(element => element.color === "blue" ).length}</span></p>
+                <p><li className='red'></li><span>{props.player[1].filter(element => element.color === "red" ).length}</span></p>
+                <p><li className='green'></li><span>{props.player[1].filter(element => element.color === "green" ).length}</span></p>
+                <p><li className='black'></li><span>{props.player[1].filter(element => element.color === "black" ).length}</span></p>
+                <p><li className='white'></li><span>{props.player[1].filter(element => element.color === "white" ).length}</span></p>
             </div>
             </div>
+           
             <div className="playerTokens">
+                <h4>Token</h4>
+                <div className='list'> 
+                    <p><li className='blue'></li><span>{props.player[2].filter(element => element.color === "blue" ).length}</span></p>
+                    <p><li className='red'></li><span>{props.player[2].filter(element => element.color === "red" ).length}</span></p>
+                    <p><li className='green'></li><span>{props.player[2].filter(element => element.color === "green" ).length}</span></p>
+                    <p><li className='black'></li><span>{props.player[2].filter(element => element.color === "black" ).length}</span></p>
+                    <p><li className='white'></li><span>{props.player[2].filter(element => element.color === "white" ).length}</span></p>
+            </div>
               {}
             </div>
         </div>

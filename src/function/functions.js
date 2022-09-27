@@ -63,4 +63,36 @@ const getRandomVal = (n, bool) => {
   }
 
 
- export {getRandomVal, returnCount, generateCard, generateCardsArray, returnColor, generateCostByRank} 
+  function checkCost(cardCost, player){
+    // player[1] card 
+    // player[2] token 
+    
+    let playerCard = getCardsCount(player[1])
+    let playerToken = getCardsCount(player[2])
+
+    var checkArray = cardCost.map( (element, index) => {
+      
+      if (element <=  (playerCard[index] + playerToken[index])) return true 
+      else return false 
+    })
+   
+    if (checkArray.every( element => element === true))  return true 
+    else return false 
+  }
+  function getCardsCount(playerCards){
+    let arr = [0, 0, 0, 0, 0]
+    playerCards.map( (element) => {
+      switch(element.color){
+        case "blue" : arr[0] += 1 ; return arr[0]
+        case "red" : arr[1] += 1 ; return arr[1]
+        case "green" : arr[2] += 1 ; return arr[2]
+        case "black" : arr[3] += 1 ; return arr[3]
+        case "white" : arr[4] += 1 ; return arr[4]
+      }
+    })
+    console.log(arr)
+    return arr
+    
+  }
+
+ export {getRandomVal, returnCount, generateCard, generateCardsArray, returnColor, generateCostByRank, checkCost, getCardsCount} 

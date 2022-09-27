@@ -1,12 +1,16 @@
+
 import React from 'react';
 
-// {props.players.filter(element => element[3])[0]}
+
 
 const GameDisplay = (props) => {
     return (
         <div className='gameDisplay'>
-           <p>Player turn </p>
-          <button> Start Game </button> 
+             <div className="playerStatus">
+                {props.players[0][3] ? <p id={"player" + props.players[0][0]}> Player 1 playing ...... </p>: <p id={"player" + props.players[1][0]}> Player 2 playing ...... </p> }
+               
+             </div>
+        
         </div>
     );
 };
