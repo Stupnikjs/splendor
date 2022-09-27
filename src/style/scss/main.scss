@@ -1,5 +1,9 @@
 $cardColor: rgb(197, 223, 211); 
 
+body{
+    font-size: 0.9em;
+}
+
 @import 'components/_board'; 
 @import 'components/_card';
 @import 'components/_player';

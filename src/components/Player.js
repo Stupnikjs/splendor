@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import PlayerCard from './PlayerCard';
 
 /*  
             */
 
 const Player = (props) => {
-    
+    console.log(JSON.stringify(props))
     const [score, setScore] = useState(0)
     useEffect( () => {
       setScore(props.player[1].reduce((previous, current) => 
@@ -23,22 +24,22 @@ const Player = (props) => {
         <div className='playerCards'>
            <h4>Cards</h4>
             <div className='list'> 
-                <p><li className='blue'></li><span>{props.player[1].filter(element => element.color === "blue" ).length}</span></p>
-                <p><li className='red'></li><span>{props.player[1].filter(element => element.color === "red" ).length}</span></p>
-                <p><li className='green'></li><span>{props.player[1].filter(element => element.color === "green" ).length}</span></p>
-                <p><li className='black'></li><span>{props.player[1].filter(element => element.color === "black" ).length}</span></p>
-                <p><li className='white'></li><span>{props.player[1].filter(element => element.color === "white" ).length}</span></p>
+                {props.player[1].map((element, index) => {
+                         return <PlayerCard key={index} color={element.color} player={props.player}></PlayerCard>
+                })}
+               
+               
             </div>
             </div>
            
             <div className="playerTokens">
                 <h4>Token</h4>
                 <div className='list'> 
-                    <p><li className='blue'></li><span>{props.player[2][0]}</span></p>
-                    <p><li className='red'></li><span>{props.player[2][1]}</span></p>
-                    <p><li className='green'></li><span>{props.player[2][2]}</span></p>
-                    <p><li className='black'></li><span>{props.player[2][3]}</span></p>
-                    <p><li className='white'></li><span>{props.player[2][4]}</span></p>
+                    <span><li className='blue'></li><span>{props.player[2][0]}</span></span>
+                    <span><li className='red'></li><span>{props.player[2][1]}</span></span>
+                    <span><li className='green'></li><span>{props.player[2][2]}</span></span>
+                    <span><li className='black'></li><span>{props.player[2][3]}</span></span>
+                    <span><li className='white'></li><span>{props.player[2][4]}</span></span>         
             </div>
               {}
             </div>

@@ -6,6 +6,7 @@
     .header{
         grid-row: 1;
         font-size: 00.7em;
+        h2, h3{margin: 0; }
     }
     .playerCards{
         background-color: aliceblue;
@@ -16,16 +17,26 @@
             margin: 0 auto;
 
         }
+
+        .list{
+            height: fit-content;
+            playerCard{
+                border: 00.5px solid black;
+
+            }
+        }
    
         
     
    }
 
     .playerTokens{
-     h4{
-        font-size: 0.7em;
-     }
+        height: fit-content;
+        h4{
+            margin: 0;
+            font-size: 0.7em;
 
+        }
 }
 }
 
@@ -41,20 +52,19 @@
 
 .list{
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    p{
-        line-height: 0.7em;
-         margin: 0;
-         display: flex;
-         flex-direction: row;
-         li{
+    grid-template-columns: 1fr 1fr 1fr;
+    
+    span{  
+        display: inline;
+        width: 50%;
+        margin: 0;
+        li{
+            border-radius: 100%;
+            padding : 50%; 
             list-style-type: none;
-            height: 8px;
-            width: 8px;
-            border-radius: 4px;
-
-         }
+        }
+    }
+   
     }
 
 
-}
