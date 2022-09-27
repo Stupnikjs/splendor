@@ -50,6 +50,8 @@
 
 
 
+
+
 .gameDisplay{
     grid-column-start: 1;
     grid-column-end: 4;
@@ -62,4 +64,8 @@
        
     }
 
+}
+
+.hidden{
+    display: none;
 }

@@ -68,8 +68,9 @@ const getRandomVal = (n, bool) => {
     // player[2] token 
     
     let playerCard = getCardsCount(player[1])
-    let playerToken = getCardsCount(player[2])
+    let playerToken = player[2]
 
+    
     var checkArray = cardCost.map( (element, index) => {
       
       if (element <=  (playerCard[index] + playerToken[index])) return true 
@@ -95,4 +96,11 @@ const getRandomVal = (n, bool) => {
     
   }
 
- export {getRandomVal, returnCount, generateCard, generateCardsArray, returnColor, generateCostByRank, checkCost, getCardsCount} 
+ function addTwoArray(arr1, arr2){
+  let sumarr = arr1.map((element, index) => {
+    return element + arr2[index]
+  })
+  return sumarr
+ }
+
+ export {getRandomVal, returnCount, generateCard, generateCardsArray, returnColor, generateCostByRank, checkCost, getCardsCount, addTwoArray} 

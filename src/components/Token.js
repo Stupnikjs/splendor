@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import CheckBox from './CheckBox';
 
 const Token = (props) => {
-    const [checked, setChecked] = useState(false)
+    
+
+    useEffect(() => {
+        
+    }, [props])
+
     return (
         <div className='token' >
             {props.count}
             <p className={'colorPoint' + ' '+ props.color }></p>
-            <input type="checkbox" id={props.id} onClick={(e) => {props.checkInput(e); props.modifyBankState(e)}}></input>
+            <CheckBox id={props.id} count={props.count} checked={props.checked} modifyBankState={props.modifyBankState} ></CheckBox>      
         </div>
     );
 };
