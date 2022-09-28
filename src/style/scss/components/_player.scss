@@ -10,20 +10,19 @@
     }
     .playerCards{
         background-color: aliceblue;
-        height: 100%; 
-        
-
+        height: 100%;
         h4{
             font-size: 0.7em;
             margin: 0 auto;
 
         }
 
-        .list{
-            height: fit-content;
+        .listCard{
+            height: 100%; 
             .playerCard{
                 border: 0.5px solid black;
                 border-radius: 2px;
+                color: rgb(204, 204, 191);
 
             }
         }
@@ -52,9 +51,30 @@
 }
 
 
-.list{
+.listCard{
+    
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr 1fr 1fr;
+    
+    span{  
+        display: inline;
+        width: 50%;
+        margin: 0;
+        li{
+            border-radius: 100%;
+            padding : 50%; 
+            list-style-type: none;
+        }
+    }
+   
+    }
+
+.listToken{
+    
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr 1fr;
     
     span{  
         display: inline;

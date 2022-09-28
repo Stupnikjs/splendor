@@ -23,9 +23,9 @@ const Player = (props) => {
             </div>
         <div className='playerCards'>
            <h4>Cards</h4>
-            <div className='list'> 
+            <div className='listCard'> 
                 {props.player[1].map((element, index) => {
-                         return <PlayerCard key={index} color={element.color} player={props.player}></PlayerCard>
+                         return <PlayerCard key={index} card={element} player={props.player}></PlayerCard>
                 })}
                
                
@@ -34,7 +34,7 @@ const Player = (props) => {
            
             <div className="playerTokens">
                 <h4>Token</h4>
-                <div className='list'> 
+                <div className='listToken'> 
                     <span><li className='blue'></li><span>{props.player[2][0]}</span></span>
                     <span><li className='red'></li><span>{props.player[2][1]}</span></span>
                     <span><li className='green'></li><span>{props.player[2][2]}</span></span>

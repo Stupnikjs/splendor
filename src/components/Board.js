@@ -28,8 +28,6 @@ const pushCard = function(element, index, card){
 }
 
 
-
-
 // useReducer 
 
 const reducer = (state, action) => {
@@ -56,7 +54,7 @@ const reducer = (state, action) => {
       
         case "start" : return [[state[0][0], state[0][1], state[0][2], true], state[1]]
 
-        case "next" : return [[state[0][0], state[0][1], state[0][2], !state[0][3]], [state[1][0], state[1][1], state[1][2], !state[1][3]] ]
+        case "next" : console.log("calling next") ; return [[state[0][0], state[0][1], state[0][2], !state[0][3]], [state[1][0], state[1][1], state[1][2], !state[1][3]] ]
         default: return new Error()
     }
     }
@@ -76,34 +74,85 @@ const Board = () => {
 
         var index = parseInt(e.currentTarget.getAttribute("id")); 
         var playerCard = cards[index-1]
-        
+ 
+        // player 1
+
         if (players[0][3] && !players[1][3] && checkCost(playerCard.cost, players[0])) {
-        console.log("achat carte")
+        var cardMoney = [0, 0, 0, 0, 0]    
+        players[0][1].map((element) => {
+            switch(element.color){
+                case "blue": cardMoney[0] += 1 ; return  
+                case "red": cardMoney[1] += 1 ; return  
+                case "green": cardMoney[2] += 1 ; return  
+                case "black": cardMoney[3] += 1 ; return  
+                case "white": cardMoney[4] += 1 ; return  
+            } 
+        })
+
+        // generation d'un nouvelle carte 
         setCards(cards.map( element => {
             if (element === cards[index-1]) return generateCard(index-1)
             else return element; 
           })) 
-       
+
+        // ajout de la carte dans les cartes du joueur 
         dispatch({type : "card player1", card : playerCard}); 
-        setBank(players[0][2].map((element, index) => {
-           return bank[index] + element
+        
+        // payement a la bank en token 
+        setBank(bank.map((element, index) => {
+            var tokenToRemove = playerCard.cost[index] - cardMoney[index]
+            if(cardMoney[index] >=  playerCard.cost[index]) return element 
+            else return element + tokenToRemove 
         }))
-   
+
+        // mise a jour des tokens du joueur 
+        var newToken = players[0][2].map((element, index) =>{ 
+            if (playerCard.cost[index] >= cardMoney[index]) return element - (playerCard.cost[index] - cardMoney[index]) 
+            else return element
+        })
+        
+        dispatch({type:"token player1", token:newToken})
+        
         dispatch({type:"next"})
     }
+        
+        // player 2
+
         else if (!players[0][3] && players[1][3] && checkCost(playerCard.cost, players[1])) {
+            var cardMoney = [0, 0, 0, 0, 0]    
+            players[1][1].map((element) => {
+                switch(element.color){
+                    case "blue": cardMoney[0] += 1 ; return  
+                    case "red": cardMoney[1] += 1 ; return  
+                    case "green": cardMoney[2] += 1 ; return  
+                    case "black": cardMoney[3] += 1 ; return  
+                    case "white": cardMoney[4] += 1 ; return  
+                } 
+            })
             var index = e.currentTarget.getAttribute("id"); 
             var playerCard = cards[index-1]
-           
+            
             setCards(cards.map( element => {
                 if (element === cards[index-1]) return generateCard(parseInt(index-1))
                 else return element; 
               })) 
            
            dispatch({type : "card player2", card : playerCard})
+           setBank(bank.map((element, index) => {
+            var tokenToRemove = playerCard.cost[index] - cardMoney[index]
+            if(cardMoney[index] >=  playerCard.cost[index]) return element 
+            else return element + tokenToRemove  
+        }))
+        
+        var newToken = players[1][2].map((element, index) =>{ 
+            if (playerCard.cost[index] >= cardMoney[index]) return element - (playerCard.cost[index] - cardMoney[index]) 
+            else return element
+        })
+           dispatch({type:"token player2", token:newToken}) 
+           
            dispatch({type:"next"})
         }
-        console.log(players)
+      
        }
 
 
