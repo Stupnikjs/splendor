@@ -12,6 +12,16 @@
     }
     .cost{
         grid-row: 2;
+        li{
+            margin: 5%;
+            span{
+                padding: 2px;
+                border-radius: 2px;
+                margin-right: 5%;
+    
+            }
+        }
+       
     }
 
 }

@@ -47,20 +47,51 @@ const getRandomVal = (n, bool) => {
        // return the array from [0,0,0,0,0] array type 
  function returnColor(num){
    switch(num){
-     case 0: return "blue"; 
-     case 1: return "red"; 
-     case 2: return "green"; 
-     case 3: return "black"; 
-     case 4: return "white"; 
-     default : return "error" 
-   }
+     case 0:  return "blue" ; 
+     case 1: return "red" ; 
+     case 2: return "green";  
+     case 3: return "black" ;  
+     case 4: return "white";  
+   
+ }
  }
 
- function generateCostByRank(rank){
-    if ([0,1,2,3].includes(rank)) return [getRandomVal(2, true),getRandomVal(2, true ),getRandomVal(2, true ),getRandomVal(2, true),getRandomVal(2, true)]
-    if ([4,5,6,7].includes(rank)) return [getRandomVal(3, false),getRandomVal(3, false ),getRandomVal(3, false ),getRandomVal(3, false),getRandomVal(3, false)]
-    if ([8,9,10,11].includes(rank)) return [getRandomVal(5, false),getRandomVal(5, false),getRandomVal(5, false),getRandomVal(5, false),getRandomVal(5, false)]
+  function generateCostByRank(rank){
+    let arr = [0, 0, 0, 0, 0]
+    var index = 0; 
+
+    // condition ? total - 1 du cout de la carte 
+    let condition = arr.reduce( (prev, curr) => 
+    prev + curr, 0
+  )
+    if ([0,1,2,3].includes(rank)) {
+      while ( condition < 4 && arr.length <= 5 && index <= 4){
+       arr[index] = getRandomVal(2, true); 
+        index += 1
+       }
+       if (arr.length === 5) return arr
+       
+      }
+   
+    if ([4,5,6,7].includes(rank)) {
+      while ( condition < 5 && arr.length <= 8 && index <= 4){
+       arr[index] = getRandomVal(4, true)
+        index += 1
+       }
+       if (arr.length === 5) return arr
+       
+      
+      }
+      
+    if ([8,9,10,11].includes(rank)) {
+      while ( condition < 5 && arr.length <=  15 && index <= 4){
+       arr[index] = getRandomVal(7, true)
+        index += 1
+       }
+       if (arr.length === 5) return arr
+       
   }
+  }  
 
 
   function checkCost(cardCost, player){

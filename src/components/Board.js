@@ -33,8 +33,6 @@ const pushCard = function(element, index, card){
 const reducer = (state, action) => {
     switch (action.type){
 
-        // ajust for multiplayer
-
         case "card player1" : return [state[0].map(
           (element, index) => pushCard(element, index, action.card) 
         ), state[1]]
@@ -55,6 +53,7 @@ const reducer = (state, action) => {
         case "start" : return [[state[0][0], state[0][1], state[0][2], true], state[1]]
 
         case "next" : console.log("calling next") ; return [[state[0][0], state[0][1], state[0][2], !state[0][3]], [state[1][0], state[1][1], state[1][2], !state[1][3]] ]
+       
         default: return new Error()
     }
     }
@@ -75,8 +74,7 @@ const Board = () => {
         var index = parseInt(e.currentTarget.getAttribute("id")); 
         var playerCard = cards[index-1]
  
-        // player 1
-
+        // player 1 turn 
         if (players[0][3] && !players[1][3] && checkCost(playerCard.cost, players[0])) {
         var cardMoney = [0, 0, 0, 0, 0]    
         players[0][1].map((element) => {
@@ -116,7 +114,7 @@ const Board = () => {
         dispatch({type:"next"})
     }
         
-        // player 2
+        // player 2 turn 
 
         else if (!players[0][3] && players[1][3] && checkCost(playerCard.cost, players[1])) {
             var cardMoney = [0, 0, 0, 0, 0]    
