@@ -1,10 +1,11 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { createContext, useEffect, useReducer } from 'react';
 import {  generateCard, generateCardsArray, checkCost, getCardsCount, addTwoArray } from '../function/functions';
 import CardBoard from './CardBoard';
 import GameDisplay from './GameDisplay';
 import Bank from './Bank';
 import Player from './Player';
 import { useState } from 'react';
+
 
 // create n players 
 function callPlayers(n){
@@ -52,11 +53,13 @@ const reducer = (state, action) => {
       
         case "start" : return [[state[0][0], state[0][1], state[0][2], true], state[1]]
 
-        case "next" : console.log("calling next") ; return [[state[0][0], state[0][1], state[0][2], !state[0][3]], [state[1][0], state[1][1], state[1][2], !state[1][3]] ]
+        case "next" : return [[state[0][0], state[0][1], state[0][2], !state[0][3]], [state[1][0], state[1][1], state[1][2], !state[1][3]] ]
        
         default: return new Error()
     }
     }
+
+
 
 
 const Board = () => {
@@ -163,7 +166,7 @@ const Board = () => {
         <div className='board'>
             <GameDisplay players={players}></GameDisplay>
             <CardBoard cards={cards}  getCard={getCard}></CardBoard>
-            <Bank bank={bank} setBank={setBank} players={players}  dispatch={dispatch} ></Bank>
+            <Bank bank={bank} setBank={setBank} players={players} cards={cards} dispatch={dispatch} ></Bank>
             {players.map((element, index) => {
                 return <Player id={index+1} key={index} player={element}></Player>
             })}       

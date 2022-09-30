@@ -144,7 +144,7 @@ const getRandomVal = (n, bool) => {
         case "white" : arr[4] += 1 ; return arr[4]
       }
     })
-    console.log(arr)
+ 
     return arr
     
   }
@@ -156,4 +156,29 @@ const getRandomVal = (n, bool) => {
   return sumarr
  }
 
- export {getRandomVal, returnCount, generateCard, generateCardsArray, returnColor, generateCostByRank, checkCost, getCardsCount, addTwoArray} 
+function canIBuy(arrCard, arrPlayer){
+  var arr = arrCard.map( (element, index) => {
+    if (element <= arrPlayer[index]) return true 
+    else return false 
+  })
+  return arr
+ 
+}
+
+ function canPlayerBuyCards(cards, player){
+    var arr1 = cards.map((element) => {
+      return element.cost})
+      
+     var arrToReturn = arr1.map((element, index) => {
+      return canIBuy(element, addTwoArray(getCardsCount(player[1]), player[2])).every(element => element === true)
+    })
+
+    return arrToReturn
+    
+    }    
+       
+   
+   
+
+ 
+ export {getRandomVal, returnCount, generateCard, generateCardsArray, returnColor, generateCostByRank, checkCost, getCardsCount, addTwoArray, canPlayerBuyCards} 
