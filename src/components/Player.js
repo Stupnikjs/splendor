@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import PlayerCard from './PlayerCard';
 
-/*  
+/* Creer fonctionnalité avec changement de dispostion des cartes au click  
             */
 
 const Player = (props) => {
-    console.log(JSON.stringify(props))
-    const [score, setScore] = useState(0)
+    
+    const [score, setScore] = useState(0); 
+    const [hasWin, setHasWin] = useState(false)
     useEffect( () => {
       setScore(props.player[1].reduce((previous, current) => 
         previous + current.point, 0)); 
-     
+     if(score >= 13 ) setHasWin(true)
        
     }, [score, props])
     return (
@@ -18,7 +19,7 @@ const Player = (props) => {
             <div className='header'>
                 <h2> Player {props.player[0]}</h2>
                 <h3>Score  
-                { score }
+                { score } { hasWin ? "Bravo vous avez gagné" : ""}
                 </h3>               
             </div>
         <div className='playerCards'>

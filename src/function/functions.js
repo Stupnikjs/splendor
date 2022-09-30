@@ -30,9 +30,16 @@ const getRandomVal = (n, bool) => {
      index: index , 
      color: couleur , 
      cost : generateCostByRank(index), 
-     point: getRandomVal(2, false)
+     point: returnPointByIndex(index)
    }
  }
+
+ function returnPointByIndex(index){
+  if ([0, 1, 2, 3].includes(index)){return getRandomVal(1, true)}
+  if ([4, 5, 6, 7].includes(index)){return getRandomVal(3, false)} 
+  if ([8, 9, 10, 11].includes(index)){ return [3, 4, 5][getRandomVal(2, true)]}
+  }
+ 
  
        // generate the card array in useState
  function generateCardsArray(n){
@@ -61,38 +68,53 @@ const getRandomVal = (n, bool) => {
     var index = 0; 
 
     // condition ? total - 1 du cout de la carte 
-    let condition = arr.reduce( (prev, curr) => 
-    prev + curr, 0
-  )
-    if ([0,1,2,3].includes(rank)) {
-      while ( condition < 4 && arr.length <= 5 && index <= 4){
+   
+    
+    if ([0, 1, 2, 3].includes(rank)) {
+      while ((arr.reduce( (prev, curr) => 
+      prev + curr, 0) < 4) && index <= 4){
        arr[index] = getRandomVal(2, true); 
         index += 1
        }
-       if (arr.length === 5) return arr
-       
+      return arr
       }
+      
    
     if ([4,5,6,7].includes(rank)) {
-      while ( condition < 5 && arr.length <= 8 && index <= 4){
-       arr[index] = getRandomVal(4, true)
-        index += 1
+      
+      while ( (arr.reduce( (prev, curr) => 
+      prev + curr, 0) < 8)  && index <= 4){
+        if (checkReduceOfArray(arr) < 6){
+          arr[index] = getRandomVal(3, true)
+         } 
+         else arr[index] = getRandomVal(2, true)
+         index += 1
        }
-       if (arr.length === 5) return arr
-       
+      return arr   
       
       }
       
     if ([8,9,10,11].includes(rank)) {
-      while ( condition < 5 && arr.length <=  15 && index <= 4){
-       arr[index] = getRandomVal(7, true)
-        index += 1
+  
+      while ( (arr.reduce( (prev, curr) => 
+      prev + curr, 0) < 15) && index <= 4){
+       if (checkReduceOfArray(arr) < 8){
+        arr[index] = getRandomVal(7, true)
+       } 
+       else arr[index] = getRandomVal(4, true)
+       index += 1
        }
-       if (arr.length === 5) return arr
+        return arr
        
   }
-  }  
+    
+  }
 
+  function checkReduceOfArray(arr){
+    var redu = (arr.reduce( (prev, curr) => 
+      prev + curr, 0)) 
+      return redu 
+  }
 
   function checkCost(cardCost, player){
     // player[1] card 

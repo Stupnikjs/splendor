@@ -1,0 +1,19 @@
+.home{
+    background-color: beige; 
+    @include flexBoxCenter; 
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    ul{
+        li{
+            list-style-type: none;
+            margin-top: 5%;
+        }
+    }
+    a{
+        margin-top: 10%;
+        background-color: aquamarine;
+        border-radius: 15px;
+        text-decoration: none;
+    }
+}
