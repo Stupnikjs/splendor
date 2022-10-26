@@ -1,15 +1,24 @@
-$cardColor: rgb(197, 223, 211); 
+$cardColor: rgb(30, 49, 40); 
+$playerColor: rgb(64, 64, 109); 
+$bankColor: rgb(112, 165, 112); 
+$playerCardsColor: rgb(180, 121, 163); 
+$mainFont: 'Oswald', sans-serif;
 
 body{
     font-size: 0.9em;
     margin: 0; 
+    font-family: $mainFont; 
 }
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+@import 'keyframes/keyframes'; 
 @import 'mixin/mixin.scss'; 
 @import 'components/_board'; 
 @import 'components/_card';
 @import 'components/_player';
 @import 'components/bank'; 
+@import "components/gamedisplay"; 
 @import 'pages/_home';
+
 
 
 

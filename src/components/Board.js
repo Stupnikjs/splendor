@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useReducer } from 'react';
-import {  generateCard, generateCardsArray, checkCost, getCardsCount, addTwoArray } from '../function/functions';
+import {  generateCard, generateCardsArray, checkCost, getCardsCount, addTwoArray, canPlayerBuyCards } from '../function/functions';
 import CardBoard from './CardBoard';
 import GameDisplay from './GameDisplay';
 import Bank from './Bank';
@@ -71,15 +71,24 @@ const Board = () => {
 
     // get the card in players card collection who clicked on it 
     
-    
+    const getIndex = function(e){
+        console.log(e.currentTarget.getAttribute('id'))
+        console.log(players[1][3])
+    }
+
+
     const getCard = function(e){ 
 
         var index = parseInt(e.currentTarget.getAttribute("id")); 
+        
+        // carte cliqué 
         var playerCard = cards[index-1]
  
-        // player 1 turn 
+        // player 1 turn et assez d'argent 
         if (players[0][3] && !players[1][3] && checkCost(playerCard.cost, players[0])) {
-        var cardMoney = [0, 0, 0, 0, 0]    
+        
+        var cardMoney = [0, 0, 0, 0, 0] 
+
         players[0][1].map((element) => {
             switch(element.color){
                 case "blue": cardMoney[0] += 1 ; return  
@@ -116,10 +125,70 @@ const Board = () => {
         
         dispatch({type:"next"})
     }
-        
-        // player 2 turn 
 
-        else if (!players[0][3] && players[1][3] && checkCost(playerCard.cost, players[1])) {
+    // player 2 turn 
+
+    if (players[1][3] && !players[0][3] && checkCost(playerCard.cost, players[1])) {
+    var cardMoney = [0, 0, 0, 0, 0] 
+
+    players[1][1].map((element) => {
+        switch(element.color){
+            case "blue": cardMoney[0] += 1 ; return  
+            case "red": cardMoney[1] += 1 ; return  
+            case "green": cardMoney[2] += 1 ; return  
+            case "black": cardMoney[3] += 1 ; return  
+            case "white": cardMoney[4] += 1 ; return  
+        } 
+    })
+
+    // generation d'un nouvelle carte 
+    setCards(cards.map( element => {
+        if (element === cards[index-1]) return generateCard(index-1)
+        else return element; 
+      })) 
+
+    // ajout de la carte dans les cartes du joueur 
+    dispatch({type : "card player2", card : playerCard}); 
+    
+    // payement a la bank en token 
+    setBank(bank.map((element, index) => {
+        var tokenToRemove = playerCard.cost[index] - cardMoney[index]
+        if(cardMoney[index] >=  playerCard.cost[index]) return element 
+        else return element + tokenToRemove 
+    }))
+
+    // mise a jour des tokens du joueur 
+    var newToken = players[1][2].map((element, index) =>{ 
+        if (playerCard.cost[index] >= cardMoney[index]) return element - (playerCard.cost[index] - cardMoney[index]) 
+        else return element
+    })
+    
+    dispatch({type:"token player2", token:newToken})
+    
+    dispatch({type:"next"})
+}
+
+}
+
+
+
+
+
+
+   
+        
+
+   
+    /*
+    const getCardPlayer2 = function(){
+    // achat bloqué dans certaines situiations
+        
+        let ind = canPlayerBuyCards(cards, players[1]).indexOf(true)
+
+        if (ind > 0) { 
+        let playerCard = cards[ind]
+        if (!players[0][3] && players[1][3] && checkCost(playerCard.cost, players[1])) {
+            console.log("ici")
             var cardMoney = [0, 0, 0, 0, 0]    
             players[1][1].map((element) => {
                 switch(element.color){
@@ -130,11 +199,10 @@ const Board = () => {
                     case "white": cardMoney[4] += 1 ; return  
                 } 
             })
-            var index = e.currentTarget.getAttribute("id"); 
-            var playerCard = cards[index-1]
+            
             
             setCards(cards.map( element => {
-                if (element === cards[index-1]) return generateCard(parseInt(index-1))
+                if (element === cards[ind]) return generateCard(ind)
                 else return element; 
               })) 
            
@@ -155,17 +223,24 @@ const Board = () => {
         }
       
        }
-
+    }
+    */
 
     useEffect(() => {
         dispatch({type:"start"})
        
         
     }, [])
+
+    useEffect(() => {
+        // automatisation 
+       // if (players[1][3]) getCardPlayer2()
+       
+    }, [players])
     return (
         <div className='board'>
             <GameDisplay players={players}></GameDisplay>
-            <CardBoard cards={cards}  getCard={getCard}></CardBoard>
+            <CardBoard cards={cards}  getCard={getCard} getIndex={getIndex}></CardBoard>
             <Bank bank={bank} setBank={setBank} players={players} cards={cards} dispatch={dispatch} ></Bank>
             {players.map((element, index) => {
                 return <Player id={index+1} key={index} player={element}></Player>

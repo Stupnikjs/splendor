@@ -1,15 +1,15 @@
 .player{ 
     display: grid;
     grid-template-rows: 20% 40% 40%;
-    background-color: antiquewhite;
-    border-radius: 15px;
+    background-color: $playerColor;
+    color: white;
     .header{
         grid-row: 1;
         font-size: 00.7em;
         h2, h3{margin: 0; }
     }
     .playerCards{
-        background-color: aliceblue;
+        background-color: $playerCardsColor;
         height: 100%;
         h4{
             font-size: 0.7em;

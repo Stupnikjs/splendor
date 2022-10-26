@@ -4,9 +4,8 @@
     grid-column-end: 5;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    background-color: rgb(76, 57, 243);
-    border-radius: 15px;
-   
+    background-color: $bankColor;
+ 
     .token{
         display: flex;
         flex-direction: row;

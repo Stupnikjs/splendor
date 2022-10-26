@@ -20,8 +20,7 @@ const Bank = (props) => {
 
 
     useEffect(() => {
-            console.log(canPlayerBuyCards(props.cards, props.players[1]))
-           
+            
             if(bankState.filter((element) => element === true).length === 3){ 
                 // player 1 
                 

@@ -2,6 +2,7 @@ const colors = ["blue", "red", "green", "black", "white"]
 
 const getRandomVal = (n, bool) => { 
     var result = Math.floor(Math.random()*(n+1)) ; 
+    
     if (!bool && result === 0) return 1
     else return result
    }
@@ -64,19 +65,27 @@ const getRandomVal = (n, bool) => {
  }
 
   function generateCostByRank(rank){
-    let arr = [0, 0, 0, 0, 0]
+    var arr = [0, 0, 0, 0, 0]
     var index = 0; 
-
+    var loopCount = 0; 
     // condition ? total - 1 du cout de la carte 
    
     
     if ([0, 1, 2, 3].includes(rank)) {
       while ((arr.reduce( (prev, curr) => 
       prev + curr, 0) < 4) && index <= 4){
-       arr[index] = getRandomVal(2, true); 
-        index += 1
+
+        console.log(`voila l'index${index}`)
+
+        if (loopCount === 0 ) {arr[index] = getRandomVal(1, true)}
+        else arr[index] = getRandomVal(2, true);
+        // pour gerer le cas [0, 0, 0, 0, 0]
+        if (index < 4) index += 1
+        else if (index === 4) {index = 0; loopCount += 1}
        }
+      console.log(arr)
       return arr
+      
       }
       
    
@@ -84,12 +93,14 @@ const getRandomVal = (n, bool) => {
       
       while ( (arr.reduce( (prev, curr) => 
       prev + curr, 0) < 8)  && index <= 4){
-        if (checkReduceOfArray(arr) < 6){
-          arr[index] = getRandomVal(3, true)
-         } 
-         else arr[index] = getRandomVal(2, true)
-         index += 1
+      
+          if (loopCount === 0 ) arr[index] = getRandomVal(2, true);
+          else arr[index] = getRandomVal(3, true);
+      
+         if (index < 4) index += 1
+         else if (index === 4) {index = 0; loopCount += 1}
        }
+      
       return arr   
       
       }
@@ -97,12 +108,12 @@ const getRandomVal = (n, bool) => {
     if ([8,9,10,11].includes(rank)) {
   
       while ( (arr.reduce( (prev, curr) => 
-      prev + curr, 0) < 15) && index <= 4){
-       if (checkReduceOfArray(arr) < 8){
-        arr[index] = getRandomVal(7, true)
-       } 
-       else arr[index] = getRandomVal(4, true)
-       index += 1
+      prev + curr, 0) < 12) && index <= 4){
+        if (loopCount === 0 ) arr[index] = getRandomVal(4, true);
+        else arr[index] = getRandomVal(7, true);
+
+       if (index < 4) index += 1
+       else if (index === 4) {index = 0; loopCount += 1}
        }
         return arr
        
