@@ -18,11 +18,15 @@
         }
 
         .listCard{
-            height: 100%; 
+             margin-top: 5px;
             .playerCard{
+                width: 20%;
                 border: 0.5px solid black;
                 border-radius: 2px;
+                height: 20%;
                 color: rgb(204, 204, 191);
+                rotate: 10deg;
+                margin-right: -10px;
 
             }
         }
@@ -53,9 +57,9 @@
 
 .listCard{
     
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;    
+    
     
     span{  
         display: inline;

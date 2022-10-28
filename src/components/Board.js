@@ -173,59 +173,6 @@ const Board = () => {
 
 
 
-
-
-   
-        
-
-   
-    /*
-    const getCardPlayer2 = function(){
-    // achat bloqué dans certaines situiations
-        
-        let ind = canPlayerBuyCards(cards, players[1]).indexOf(true)
-
-        if (ind > 0) { 
-        let playerCard = cards[ind]
-        if (!players[0][3] && players[1][3] && checkCost(playerCard.cost, players[1])) {
-            console.log("ici")
-            var cardMoney = [0, 0, 0, 0, 0]    
-            players[1][1].map((element) => {
-                switch(element.color){
-                    case "blue": cardMoney[0] += 1 ; return  
-                    case "red": cardMoney[1] += 1 ; return  
-                    case "green": cardMoney[2] += 1 ; return  
-                    case "black": cardMoney[3] += 1 ; return  
-                    case "white": cardMoney[4] += 1 ; return  
-                } 
-            })
-            
-            
-            setCards(cards.map( element => {
-                if (element === cards[ind]) return generateCard(ind)
-                else return element; 
-              })) 
-           
-           dispatch({type : "card player2", card : playerCard})
-           setBank(bank.map((element, index) => {
-            var tokenToRemove = playerCard.cost[index] - cardMoney[index]
-            if(cardMoney[index] >=  playerCard.cost[index]) return element 
-            else return element + tokenToRemove  
-        }))
-        
-        var newToken = players[1][2].map((element, index) =>{ 
-            if (playerCard.cost[index] >= cardMoney[index]) return element - (playerCard.cost[index] - cardMoney[index]) 
-            else return element
-        })
-           dispatch({type:"token player2", token:newToken}) 
-           
-           dispatch({type:"next"})
-        }
-      
-       }
-    }
-    */
-
     useEffect(() => {
         dispatch({type:"start"})
        

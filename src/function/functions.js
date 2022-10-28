@@ -73,7 +73,7 @@ const getRandomVal = (n, bool) => {
     
     if ([0, 1, 2, 3].includes(rank)) {
       while ((arr.reduce( (prev, curr) => 
-      prev + curr, 0) < 4) && index <= 4){
+      prev + curr, 0) < 5) && index <= 4){
 
         console.log(`voila l'index${index}`)
 
